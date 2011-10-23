@@ -338,7 +338,7 @@ public class Grafo implements Cloneable{
      */
     final Integer custoMaximo = 99999;
     
-    public void menorCaminho(Integer v1, Integer v2, ArrayList<Integer> caminho, Integer peso){
+    public Integer menorCaminho(Integer v1, Integer v2, ArrayList<Integer> caminho){
         int totVertices = this.vertices.size();
         int origem = pegaVertice(v1).getPos();
         int destino = pegaVertice(v2).getPos();
@@ -380,7 +380,7 @@ public class Grafo implements Cloneable{
                     
                     if (novaDistancia < dist[i]){
                         dist[i] = novaDistancia;
-                        path[i] = dist[i];
+                        path[i] = atual;
                         k = i;
                     }
                     
@@ -399,12 +399,14 @@ public class Grafo implements Cloneable{
             atual = k;
             perm[atual] = 1;
         }
+                
+        int rota = destino;
         
-        while (destino != origem){
-            caminho.add(path[destino]);
-            destino = path[destino];
+        while (rota != origem){
+            caminho.add(path[rota]);
+            rota = path[rota];
         }        
-        peso = dist[destino];
+        return dist[destino];
     }
 
     @Override

@@ -150,8 +150,8 @@ public class Grafos {
                             
                             ArrayList<Integer> menorCaminho = new ArrayList<Integer>();
                             
-                            saida += "{\"menorcaminho\":{\"ID1\":"+v1+",\"ID2\":"+v2+",";
-                            grafo.menorCaminho(v1, v2, menorCaminho, peso);
+                            saida += "{\"menorcaminho\":{\"ID1\":"+v1+",\"ID2\":"+v2+",\"caminho\":[";
+                            peso += grafo.menorCaminho(v1, v2, menorCaminho);
                             
                             aux = "";                        
                             if (menorCaminho.isEmpty())
@@ -159,6 +159,7 @@ public class Grafos {
                             else
                                 for (Integer i : menorCaminho){
                                     saida += aux + i.toString();
+                                    aux = ",";
                                 }
                                 saida += "],\"custo\":"+peso.toString()+"}";
                         }
