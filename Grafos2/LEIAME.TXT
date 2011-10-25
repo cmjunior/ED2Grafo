@@ -1,0 +1,23 @@
+Implementaçao de Grafos - Celso Marigo Junior - 10102169
+
+Entrada configurada para arquivo, o projeto pode ser testado a partir do shell
+do linux:
+
+java -jar Grafos2.jar < entrada.txt
+
+"entrada.txt" é um arquivo de exemplo de entrada de exemplo, o nome pode 
+ser qualer um.
+
+Se preferir, estou enviando arquivo com as classes na pasta Classes, com 
+estas é necessário compilar e gerar o pacore ou testar pelo net beans.
+
+Se desejar testar diretamente no NetBeans, pode ser usado um arquivo de 
+entrada, bastando comentar/descomentar as seguintes linhas(25-28) conforme segue :
+
+- Entrada de dados pela entrada padrão
+inRead = new BufferedReader(new InputStreamReader(System.in));
+                
+- Entrada de arquivo texto para fins de Debug.
+inRead = new BufferedReader(new FileReader("/tmp/entrada.txt"));
+
+Não existem BUGs conhecidos neste projeto.
