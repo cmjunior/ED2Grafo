@@ -8,15 +8,36 @@ package grafos2;
  *
  * @author celso
  */
-public class Aresta implements Comparable<Aresta> {
+public class Aresta implements Comparable<Aresta>, Cloneable {
+    private boolean conectado;
     private Integer peso;
     private Vertice v1;
     private Vertice v2;
     
-    public Aresta(Integer peso, Vertice v1, Vertice v2) {
+    public Integer custoMaximo(){
+        return 99999;
+    }
+    
+    public Aresta(){
+        this.conectado = false;
+        this.peso = custoMaximo();
+        this.v1 = null;
+        this.v2 = null;
+    }
+    
+    public Aresta(boolean conectado, Integer peso, Vertice v1, Vertice v2) {
+        this.conectado = conectado;
         this.peso = peso;
         this.v1 = v1;
         this.v2 = v2;
+    }
+
+    public Boolean getConectado() {
+        return conectado;
+    }
+
+    public void setConectado(Boolean conectado) {
+        this.conectado = conectado;
     }
     
     public Integer getPeso() {
@@ -27,25 +48,27 @@ public class Aresta implements Comparable<Aresta> {
         this.peso = peso;
     }
 
-    public Vertice getV1() {
-        return v1;
-    }
-
     public void setV1(Vertice v1) {
         this.v1 = v1;
-    }
-
-    public Vertice getV2() {
-        return v2;
     }
 
     public void setV2(Vertice v2) {
         this.v2 = v2;
     }
 
+    public Vertice getV1() {
+        return v1;
+    }
+
+    public Vertice getV2() {
+        return v2;
+    }
+
     @Override
     public String toString() {
-        return "Aresta{" + "peso=" + peso + ", v1=" + v1.getChave() + ", v2=" + v2.getChave() + '}';
+        return "Aresta{" + "peso=" + peso + ", "
+                + "v1=" + ( v1 != null ? v1.getChave() : "NULL") + ", "
+                + "v2=" + ( v2 != null ? v2.getChave() : "NULL") + '}';
     }
     
     @Override
@@ -73,5 +96,18 @@ public class Aresta implements Comparable<Aresta> {
             return false;
         }
         return true;
-    }    
+    }
+
+    @Override
+    protected Aresta clone() {
+        try {
+            Aresta clone = (Aresta)super.clone();
+            clone.v1 = ( this.v1 != null ? (Vertice)this.v1.clone() : null );
+            clone.v2 = ( this.v2 != null ? (Vertice)this.v2.clone() : null );
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            System.out.println(this.getClass()+" não é clonável.");
+            return null;
+        }
+    }
 }

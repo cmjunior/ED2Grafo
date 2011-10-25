@@ -21,10 +21,12 @@ public class Grafos {
     public static void main(String[] args) throws FileNotFoundException {
         Grafo grafo = new Grafo(Grafo.tipoGrafo.naoDirecionado, 1);
         BufferedReader inRead;
-        //inRead = new BufferedReader(new InputStreamReader(System.in));
+        
+        // Entrada de dados pela entrada padrão
+        inRead = new BufferedReader(new InputStreamReader(System.in));
         
         // Entrada de arquivo texto para fins de Debug.
-        inRead = new BufferedReader(new FileReader("/tmp/entrada.txt"));
+        //inRead = new BufferedReader(new FileReader("/tmp/entrada.txt"));
         
         Comandos com;
         com = Comandos.Null;
@@ -117,8 +119,9 @@ public class Grafos {
                         } else if (entrada.equalsIgnoreCase("ordemtopologica")){
                             ArrayList<Integer> ordemtop = new ArrayList<Integer>();
                             Grafo copia;
-
-                            copia = (Grafo) grafo.clone();
+                            
+                            copia = (Grafo)grafo.clone();
+                                                        
                             saida += "{\"ordemtop\":[";
                             grafo.ordemTopologica(copia, ordemtop);
 
@@ -128,6 +131,7 @@ public class Grafos {
                                 aux = ",";
                             }
                             saida += "]}";
+                            
                         } else if (entrada.equalsIgnoreCase("arvoreminima")){
                             ArrayList<Aresta> arvoreminima = new ArrayList<Aresta>();
                             Integer peso = 0;
@@ -143,6 +147,7 @@ public class Grafos {
                                 peso += ar.getPeso();
                             }
                             saida += "],\"custo\":"+peso.toString()+"}";
+                            
                         } else if (entrada.equalsIgnoreCase("menorcaminho")){
                             Integer v1, v2, peso = 0;
                             v1 = Integer.parseInt(sT.nextToken());
